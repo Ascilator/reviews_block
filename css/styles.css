@@ -402,6 +402,7 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
   font-weight: 700;
   font-style: Bold;
   font-size: 14px;
@@ -409,6 +410,14 @@ img {
   text-align: center;
   background: none;
   margin-left: auto;
+  transition: 0.3s;
+}
+.leave_review .form_footer .submit_button:hover {
+  background: #19d0cd;
+  color: #fff;
+}
+.leave_review .form_footer .submit_button:active {
+  transform: scale(0.95);
 }
 @media screen and (max-width: 600px) {
   .leave_review .form_footer .submit_button {
@@ -522,6 +531,11 @@ img {
   padding: 0px 0 15px;
   color: #485460;
 }
+.doctor_select .doctor_select_header .filter_input {
+  width: 100%;
+  border: none;
+  outline: none;
+}
 .doctor_select .doctor_select_header .arrow {
   transition: 0.3s;
 }
@@ -533,7 +547,7 @@ img {
 }
 .doctor_select .doctor_select-body {
   position: absolute;
-  top: 55px;
+  top: 33px;
   left: 0;
   width: 100%;
   background: #fff;
@@ -546,7 +560,22 @@ img {
   .doctor_select .doctor_select-body {
     top: 35px;
     transform: none;
+    height: 200px;
   }
+  .doctor_select .doctor_select-body .swiper-wrapper {
+    display: block;
+    overflow: auto;
+  }
+  .doctor_select .doctor_select-body .swiper-slide {
+    height: auto;
+  }
+}
+.doctor_select .not_found {
+  padding: 6px 0;
+  font-style: Bold;
+  font-size: 16px;
+  line-height: 28px;
+  display: none;
 }
 .doctor_select._open .doctor_select-body {
   opacity: 1;
@@ -563,23 +592,6 @@ img {
 }
 .doctor_select .doctor_swiper {
   height: 130px;
-}
-@media screen and (max-width: 600px) {
-  .doctor_select .doctor_swiper {
-    position: fixed;
-    z-index: 10;
-    background: #fff;
-    top: 3%;
-    left: 20px;
-    width: calc(100% - 40px);
-    box-shadow: 0px 0px 25px 0px rgba(5, 85, 138, 0.6078431373);
-    padding: 20px;
-  }
-}
-@media screen and (max-width: 600px) {
-  .doctor_select .swiper-scrollbar {
-    display: none;
-  }
 }
 .doctor_select .doctor_item {
   padding: 6px 0;
@@ -624,6 +636,11 @@ img {
   width: 10px;
   height: 15px;
   background: #fff;
+}
+@media screen and (max-width: 600px) {
+  .doctor_select .swiper-scrollbar-vertical.swiper-scrollbar:before, .doctor_select .swiper-scrollbar-vertical.swiper-scrollbar:after {
+    display: none;
+  }
 }
 
 .doctor_select .swiper-scrollbar-drag {

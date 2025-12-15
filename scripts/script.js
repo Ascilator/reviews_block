@@ -1,5 +1,3 @@
-$(function () {});
-
 const swiper = new Swiper('.review_swiper', {
   loop: true,
   navigation: {
@@ -86,20 +84,54 @@ starsContainers.forEach((container) => {
 document.querySelectorAll('.doctor_select').forEach((drop) => {
   const toggle = drop.querySelector('.doctor_select_header');
   const doctors = drop.querySelectorAll('.doctor_item');
+  const filterInput = drop.querySelector('.filter_input');
 
   doctors.forEach((doctor) => {
     doctor.addEventListener('click', () => {
       drop.classList.remove('_open');
-      toggle.querySelector('span').textContent = doctor.textContent;
+      filterInput.value = doctor.textContent;
     });
   });
 
   toggle.addEventListener('click', () => {
     drop.classList.toggle('_open');
+    if (drop.classList.contains('_open')) {
+      filterInput.focus();
+    }
   });
 });
 
-const doctorSwiper = new Swiper('.doctor_swiper', {
+document.querySelectorAll('.filter_input').forEach((input) => {
+  input.addEventListener('input', () => {
+    const filter = input.value.toLowerCase();
+    const drop = input.closest('.doctor_select');
+    const doctors = drop.querySelectorAll('.doctor_item');
+    const notFound = drop.querySelector('.not_found');
+
+    let isItemsVisible = false;
+
+    doctors.forEach((doctor) => {
+      const text = doctor.textContent.split(' ')[0].toLowerCase();
+      if (text.includes(filter)) {
+        doctor.style.display = '';
+        isItemsVisible = true;
+      } else {
+        doctor.style.display = 'none';
+      }
+
+      doctorSwiper.update();
+      if (isItemsVisible) {
+        notFound.style.display = 'none';
+        drop.querySelector('.doctor_swiper').style.display = 'block';
+      } else {
+        notFound.style.display = 'block';
+        drop.querySelector('.doctor_swiper').style.display = 'none';
+      }
+    });
+  });
+});
+
+let doctorSwiper = new Swiper('.doctor_swiper', {
   direction: 'vertical',
   freeMode: true,
   slidesPerView: 5,
@@ -111,20 +143,64 @@ const doctorSwiper = new Swiper('.doctor_swiper', {
 });
 
 function updateDoctorSwiperHeight() {
-  const swiperEl = document.querySelector('.doctor_swiper');
-
-  if (!swiperEl) return;
-
-  if (window.innerWidth < 600) {
-    swiperEl.style.height = window.innerHeight * 0.95 + 'px';
-  } else {
-    swiperEl.style.height = '130px';
+  if (window.innerWidth < 600 && doctorSwiper) {
+    doctorSwiper.destroy();
+    doctorSwiper = null;
+  } else if (!doctorSwiper && window.innerWidth >= 600) {
+    doctorSwiper = new Swiper('.doctor_swiper', {
+      direction: 'vertical',
+      freeMode: true,
+      slidesPerView: 5,
+      scrollbar: {
+        el: '.swiper-scrollbar',
+        draggable: true,
+      },
+      mousewheel: true,
+    });
   }
 }
 
+const updatePhoneInput = () => {
+  const phoneInput = document.querySelector('.input_item input[type="tel"]');
+
+  phoneInput.addEventListener('focus', () => {
+    phoneInput.placeholder = '+7 (___) ___-__-__';
+  });
+
+  phoneInput.addEventListener('blur', () => {
+    if (phoneInput.value === '') {
+      phoneInput.placeholder = 'Ваш номер телефона';
+    }
+  });
+
+  phoneInput.addEventListener('keydown', (e) => {
+    const allowedKeys = [
+      'Backspace',
+      'Tab',
+      'Enter',
+      'Escape',
+      'Delete',
+      'ArrowLeft',
+      'ArrowRight',
+      'ArrowUp',
+      'ArrowDown',
+      'Home',
+      'End',
+      '+',
+    ];
+    if (allowedKeys.includes(e.key)) {
+      return;
+    }
+
+    if (!/^\d$/.test(e.key)) {
+      e.preventDefault();
+    }
+  });
+};
+
+updatePhoneInput();
 updateDoctorSwiperHeight();
 
 window.addEventListener('resize', () => {
   updateDoctorSwiperHeight();
-  doctorSwiper.update();
 });

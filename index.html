@@ -165,7 +165,7 @@
             <div class="left_part">
               <div class="doctor_select">
                 <div class="doctor_select_header">
-                  <span>Выберите врача по ФИО</span>
+                  <input class="filter_input" placeholder="Выберите врача по ФИО" />
                   <img class="arrow" src="img/arrow_down.svg" alt="" />
                 </div>
 
@@ -189,6 +189,7 @@
 
                     <div class="swiper-scrollbar"></div>
                   </div>
+                  <div class="not_found">Ничего не найдено</div>
                 </div>
               </div>
               <div class="inputs_conteiner">
@@ -196,7 +197,14 @@
                   <input type="text" placeholder="Ваше имя" />
                 </div>
                 <div class="input_item">
-                  <input type="text" placeholder="Ваш номер телефона" />
+                  <input
+                    placeholder="Ваш номер телефона"
+                    type="tel"
+                    placeholder="+7 (___) ___-__-__"
+                    pattern="\+7\s\(\d{3}\)\s\d{3}-\d{2}-\d{2}"
+                    title="Формат: +7 (999) 999-99-99"
+                    required
+                  />
                 </div>
                 <div class="input_item">
                   <input type="text" placeholder="Ваш email" />
