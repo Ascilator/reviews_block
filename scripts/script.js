@@ -101,6 +101,14 @@ document.querySelectorAll('.doctor_select').forEach((drop) => {
   });
 });
 
+document.addEventListener('click', (e) => {
+  document.querySelectorAll('.doctor_select').forEach((drop) => {
+    if (!drop.contains(e.target)) {
+      drop.classList.remove('_open');
+    }
+  });
+});
+
 document.querySelectorAll('.filter_input').forEach((input) => {
   input.addEventListener('input', () => {
     const filter = input.value.toLowerCase();
@@ -119,7 +127,7 @@ document.querySelectorAll('.filter_input').forEach((input) => {
         doctor.style.display = 'none';
       }
 
-      doctorSwiper.update();
+      doctorSwiper?.update();
       if (isItemsVisible) {
         notFound.style.display = 'none';
         drop.querySelector('.doctor_swiper').style.display = 'block';
