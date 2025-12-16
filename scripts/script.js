@@ -114,7 +114,6 @@ document.querySelectorAll('.filter_input').forEach((input) => {
     const filter = input.value.toLowerCase();
     const drop = input.closest('.doctor_select');
     const doctors = drop.querySelectorAll('.doctor_item');
-    const notFound = drop.querySelector('.not_found');
 
     let isItemsVisible = false;
 
@@ -129,11 +128,9 @@ document.querySelectorAll('.filter_input').forEach((input) => {
 
       doctorSwiper?.update();
       if (isItemsVisible) {
-        notFound.style.display = 'none';
-        drop.querySelector('.doctor_swiper').style.display = 'block';
+        drop.classList.add('_not_found');
       } else {
-        notFound.style.display = 'block';
-        drop.querySelector('.doctor_swiper').style.display = 'none';
+        drop.classList.remove('_not_found');
       }
     });
   });

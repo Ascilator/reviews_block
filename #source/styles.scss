@@ -325,6 +325,12 @@ img {
     }
   }
 
+  form:invalid button[type='submit'] {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
   .form_footer {
     display: flex;
     align-items: center;
@@ -335,13 +341,13 @@ img {
       align-items: center;
       input {
         opacity: 0;
-        visibility: hidden;
-        font-size: 0;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 0;
-        height: 0;
+        // visibility: hidden;
+        // font-size: 0;
+        // position: absolute;
+        // top: 0;
+        // left: 0;
+        width: 1px;
+        // height: 0;
       }
 
       input:checked + label .checkbox {
@@ -463,13 +469,13 @@ img {
   padding-top: 10px;
   input {
     opacity: 0;
-    visibility: hidden;
-    font-size: 0;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 0;
+    // visibility: hidden;
+    // font-size: 0;
+    // position: absolute;
+    // top: 0;
+    // left: 0;
+    width: 1px;
+    // height: 0;
   }
 
   span {
@@ -591,6 +597,15 @@ img {
 
     .doctor_select_header .arrow {
       transform: rotate(180deg);
+    }
+  }
+
+  &._not_found {
+    .doctor_select-body {
+      display: none;
+    }
+    .not_found {
+      display: block;
     }
   }
 

@@ -165,7 +165,7 @@
             <div class="left_part">
               <div class="doctor_select">
                 <div class="doctor_select_header">
-                  <input class="filter_input" placeholder="Выберите врача по ФИО" />
+                  <input class="filter_input" placeholder="Выберите врача по ФИО" required />
                   <img class="arrow" src="img/arrow_down.svg" alt="" />
                 </div>
 
@@ -201,16 +201,16 @@
                     placeholder="Ваш номер телефона"
                     type="tel"
                     placeholder="+7 (___) ___-__-__"
-                    pattern="\+7\s\(\d{3}\)\s\d{3}-\d{2}-\d{2}"
+                    pattern="^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$"
                     title="Формат: +7 (999) 999-99-99"
                     required
                   />
                 </div>
                 <div class="input_item">
-                  <input type="text" placeholder="Ваш email" />
+                  <input type="text" placeholder="Ваш email" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" />
                 </div>
                 <div class="stars_input">
-                  <input type="number" />
+                  <input type="number" required />
                   <span>Оцените врача:</span>
                   <div class="stars_container">
                     <div class="star">
@@ -259,11 +259,11 @@
             </div>
             <div class="right_part">
               <div class="textarea_container">
-                <textarea placeholder="Напишите Ваш отзыв"></textarea>
+                <textarea placeholder="Напишите Ваш отзыв" required></textarea>
               </div>
               <div class="form_footer">
                 <div class="consent_container">
-                  <input type="checkbox" id="consent" />
+                  <input type="checkbox" id="consent" required />
                   <label for="consent">
                     <span class="checkbox">
                       <span class="internal"></span>
