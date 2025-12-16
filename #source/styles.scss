@@ -327,8 +327,6 @@ img {
 
   form:invalid button[type='submit'] {
     opacity: 0.5;
-    cursor: not-allowed;
-    pointer-events: none;
   }
 
   .form_footer {
@@ -601,7 +599,7 @@ img {
   }
 
   &._not_found {
-    .doctor_select-body {
+    .doctor_swiper {
       display: none;
     }
     .not_found {

@@ -119,15 +119,26 @@ document.querySelectorAll('.filter_input').forEach((input) => {
 
     doctors.forEach((doctor) => {
       const text = doctor.textContent.split(' ')[0].toLowerCase();
+
+      if (filter === '') {
+        doctor.style.display = 'block';
+        doctorSwiper?.update();
+        drop.classList.remove('_not_found');
+        return;
+      }
+
+      console.log(filter);
+
       if (text.includes(filter)) {
-        doctor.style.display = '';
+        doctor.style.display = 'block';
         isItemsVisible = true;
       } else {
         doctor.style.display = 'none';
       }
 
       doctorSwiper?.update();
-      if (isItemsVisible) {
+
+      if (!isItemsVisible) {
         drop.classList.add('_not_found');
       } else {
         drop.classList.remove('_not_found');

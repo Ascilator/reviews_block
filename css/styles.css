@@ -338,8 +338,6 @@ img {
 }
 .leave_review form:invalid button[type=submit] {
   opacity: 0.5;
-  cursor: not-allowed;
-  pointer-events: none;
 }
 .leave_review .form_footer {
   display: flex;
@@ -583,7 +581,7 @@ img {
 .doctor_select._open .doctor_select_header .arrow {
   transform: rotate(180deg);
 }
-.doctor_select._not_found .doctor_select-body {
+.doctor_select._not_found .doctor_swiper {
   display: none;
 }
 .doctor_select._not_found .not_found {
