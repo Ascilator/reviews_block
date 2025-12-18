@@ -178,42 +178,11 @@ function updateDoctorSwiperHeight() {
 
 const updatePhoneInput = () => {
   const phoneInput = document.querySelector('.input_item input[type="tel"]');
-
-  phoneInput.addEventListener('focus', () => {
-    phoneInput.placeholder = '+7 (___) ___-__-__';
-  });
-
-  phoneInput.addEventListener('blur', () => {
-    if (phoneInput.value === '') {
-      phoneInput.placeholder = 'Ваш номер телефона';
-    }
-  });
-
-  phoneInput.addEventListener('keydown', (e) => {
-    const allowedKeys = [
-      'Backspace',
-      'Tab',
-      'Enter',
-      'Escape',
-      'Delete',
-      'ArrowLeft',
-      'ArrowRight',
-      'ArrowUp',
-      'ArrowDown',
-      'Home',
-      'End',
-      '+',
-    ];
-    if (allowedKeys.includes(e.key)) {
-      return;
-    }
-
-    if (!/^\d$/.test(e.key)) {
-      e.preventDefault();
-    }
-  });
+  const maskOptions = {
+    mask: '+{7} (000) 000-00-00',
+  };
+  const mask = IMask(phoneInput, maskOptions);
 };
-
 updatePhoneInput();
 updateDoctorSwiperHeight();
 
