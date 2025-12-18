@@ -177,11 +177,30 @@ function updateDoctorSwiperHeight() {
 }
 
 const updatePhoneInput = () => {
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const phoneInput = document.querySelector('.input_item input[type="tel"]');
   const maskOptions = {
     mask: '+{7} (000) 000-00-00',
   };
   const mask = IMask(phoneInput, maskOptions);
+
+  mask.on('accept', () => {
+    validatePhone();
+  });
+
+  mask.on('complete', () => {
+    validatePhone();
+  });
+
+  function validatePhone() {
+    const isComplete = mask.masked.isComplete;
+
+    if (!isComplete) {
+      phoneInput.setCustomValidity('Введите корректный номер');
+    } else {
+      phoneInput.setCustomValidity('');
+    }
+  }
 };
 updatePhoneInput();
 updateDoctorSwiperHeight();
