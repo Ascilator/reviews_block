@@ -189,3 +189,20 @@ updateDoctorSwiperHeight();
 window.addEventListener('resize', () => {
   updateDoctorSwiperHeight();
 });
+
+const email = document.getElementById('email');
+
+email.addEventListener('input', function () {
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (this.value.trim() === '') {
+    this.setCustomValidity('');
+    return;
+  }
+
+  if (!regex.test(this.value)) {
+    this.setCustomValidity('Введите корректный email, например: test@mail.ru');
+  } else {
+    this.setCustomValidity('');
+  }
+});
